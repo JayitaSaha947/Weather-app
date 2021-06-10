@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search Global Weather</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+    
+</head>
+
+<!--CSS Styles-->
+
+<style>
+
+	body{
+		background-image: url('https://images4.alphacoders.com/720/720202.jpg');
+		background-position: center;
+	}
+
+	}
+	.container{
+		width: 400px;
+		height: 300px;
+		margin: auto;
+		border-radius: 15px;
+		padding: 0px;
+	}
+	.form-container{
+		padding: 0px;
+		margin-top: 150px;
+		/*border-radius: 10px;*/
+		font-family: 'Berkshire Swash', cursive;
+	}
+	.form-container>h1{
+		text-align: center;
+		color: #191970;
+		text-decoration: underline;
+		padding: 0px;
+	}
+	.form-group{
+		margin-bottom: 20px;
+		text-align: center;
+	}
+	.form-group>label{
+		color: white;
+		padding: 0px;
+	}
+	#textName{
+		height: 25px;
+		width: 350px;
+		border-radius: 10px;
+		font-size: 18px;
+		color: black;
+	}
+	#search2,#search1{
+		height: 25px;
+		width: 90px;
+		border-radius: 10px;
+		font-size: 18px;
+		background-color: #36454F;
+		color: white;
+	}
+
+</style>
+<body>
+
+	<div class="container">
+		<div class="form-container">
+			<h1>Search Global Weather</h1>
+			<form>
+				<div class="form-group">
+					<label><h3>Enter the location To search: &nbsp</h3></label><br>
+					<input type="text" id="textName" placeholder="Enter the city name you want to search"><br><br><br>
+					<button id="search1" type="button">Go</button>
+					<button id="search2" type="button">Search</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!--Linking index.js file-->
+
+	<script src="index.js"></script>
+
+</body>
+</html>

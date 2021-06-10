@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather App</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!--CSS Styles-->
+
+	<style type="text/css">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+		*{
+			padding: 0;
+			margin: 0;
+			font-family: 'Cormorant Garamond', serif;
+		}
+
+		body{
+			background: #E55D87;  /* fallback for old browsers */
+			background: -webkit-linear-gradient(to right, #5FC3E4, #E55D87);  /* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to right, #5FC3E4, #E55D87); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			height: 100vh;
+			width: 100vw;
+		}
+
+		html,body{
+			font-size: 70%;
+			height: 100%;
+		}
+
+
+		html{
+			background: #eee;
+		}
+
+
+		.box{
+			width: 30vw;
+			height: 100vh;
+			border-radius: 0.5rem;
+			box-shadow: 0 0.2rem 3rem rgba(0,0,0,0.2);
+			background: #a5bbdd;
+			position: relative;
+			overflow: hidden;
+			transform: translate3d(0,0,0);
+			min-width: 20rem;
+			min-height: 35rem;
+		}
+
+		.wave{
+			opacity: 0.3;
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			background: white;
+			width: 50rem;
+			height: 40rem;
+			margin-left: -25rem;
+			margin-top: -25rem;
+			transform-origin: 50% 48%;
+			border-radius: 43%;
+			animation: drift 3000ms infinite linear;
+			z-index: 1;
+		}
+
+		.wave.three{
+			animation: drift 5000ms infinite linear;
+			z-index: 2 !important;
+			opacity: 0.2;
+		}
+
+		.wave.two{
+			animation: drift 7000ms infinte linear;
+			opacity:0.1;
+			z-index: 3 !important;
+		}
+		
+		.box:after{
+			content: "";
+			display: block;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 11;
+			transform: translate3d(0,0,0);
+		}
+
+		@keyframes drift{
+			from{
+				transform: rotate(0deg);
+			}
+			from{
+				transform: rotate(360deg);
+			}
+		}
+
+		.info{
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 50%;
+			z-index: 4;
+		}
+		.view{
+			margin-top: 2rem;
+			font-weight: 400;
+		}
+
+		.man-view{
+			float: left;
+			width: 100%;
+			font-size: 4rem;
+			text-align: center;
+		}
+		.location{
+			margin-top: 1.5rem;
+			width: 100%;
+			text-align: center;
+			font-weight: 300;
+			font-size: 3rem;
+		}
+
+		.fa-street-view{
+			animation: rotates 3s linear infinite alternate;
+			
+		}
+
+		@keyframes rotates{
+			from{
+				transform: translateX(-0.7rem);
+			}
+			to{
+				transform: translateX(0.7rem);
+			}
+		}
+
+		#date{
+			text-align: center;
+			margin-top: 1.5rem;
+			color: #57606f;
+			font-size: 1.2rem;
+			font-weight: 300;
+			text-transform: uppercase;
+		}
+
+		#year{
+			margin-top: 0.5rem;
+			text-align: center;
+			font-size: 1.0rem;
+		}
+
+		.temp{
+			margin-top: 1.0rem;
+			text-align: center;
+			font-size: 3rem;
+		}
+
+		.tempmin_max{
+			text-align: center;
+			margin-top: 0.3rem;
+			font-weight: 300;
+			font-size: 1.2rem;
+			color: #57606f;
+		}
+
+		.weathericon{
+			height: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 3em;
+		}
+
+		.weathericon .image{
+			font-size: 5em;
+			animation: fas-anime 2s linear infinite alternate;
+		}
+
+		#condition{
+			text-align: center;
+			margin-top: 0.3rem;
+			font-weight: 300;
+			font-size: 1.2rem;
+			color: black;
+		}
+		@keyframes fas-anime{
+			from{
+				transform: scale(0.8);
+			}
+			to{
+				transform: scale(1.5);
+			}
+		}
+
+		@media (max-width: 600px){
+			.box{
+				width: 90vw;
+				height: 80vh;
+			}
+
+			.wave{
+				top: 85%;
+			}
+
+			#weathericon{
+				font-size: 5em;
+			}
+			.info{
+				font-size: 1.5rem;
+			}
+		}
+
+		@media (max-height: 500px){
+			.box{
+				height: 80vh;
+			}
+			.wave{
+				top:115%;
+			}
+		}
+
+		body>span{
+			width: 100vw;
+			text-align: center;
+			color: grey;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="box">
+		<div class="wave one"></div>
+		<div class="wave two"></div>
+		<div class="wave three"></div>
+
+		<div class="weathericon"><img class="image" src="http://openweathermap.org/img/wn/10d@2x.png"></div>
+
+		<div class="info">
+			<div class="view">
+				<div class="man-view"><i class="fas fa-street-view"></i></div>
+				<div class="location"><h2>Kolkata,India </h2></div>
+			</div>
+			<p id="date">Tuesday | June 1</p>
+			<p id="year">2020</p>
+			<h1 class="temp">40C</h1>
+			<h3 class="tempmin_max">Min 30C | Max 45C</h3>
+			<h2 id="condition">Clear</h2>
+		</div>
+	</div>
+
+	<!--Getting date,month,year by javascript-->
+
+	<script>
+		const  curDate =  document.getElementById("date");
+		const  curYear = document.getElementById("year");
+		let weathericon = document.getElementById("weathericon");
+
+		const tempStatus = "Clouds";
+
+		const getCurrentDay = () => {
+			var weekday = new Array(7);
+			weekday[0] = "Sunday";
+			weekday[1] = "Monday";
+			weekday[2] = "Tuesday";
+			weekday[3] = "Wednesday";
+			weekday[4] = "Thrusday";
+			weekday[5] = "Friday";
+			weekday[6] = "Saturday";
+			var currentTime = new Date();
+			var day = weekday[currentTime.getDay()];
+			return day;
+		};
+
+		const getCurrentTime = () => {
+
+			var months = ["Jan","Feb","March","April","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+			var time = new Date();
+			var month = months[time.getMonth()+1];
+			var date = time.getDate();
+			return `${month} ${date}`;
+		};
+
+		const getCurrentYear = () => {
+			var time = new Date();
+			var year = time.getFullYear();
+
+			return year;
+		}
+
+		curDate.innerHTML = getCurrentDay() +" | "+ getCurrentTime();
+		curYear.innerHTML = getCurrentYear();
+	</script>
+
+	<!--Linking the weather.js file to get result on the searched basis-->
+
+	<script src="weather.js"></script>
+</body>
+</html>
